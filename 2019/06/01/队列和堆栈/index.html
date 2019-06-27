@@ -1,0 +1,331 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>队列和堆栈 | zahra</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style-dark.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight-dark.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">队列和堆栈</h1><a id="logo" href="/.">zahra</a><p class="description">种一棵树最好的时间是十年前，其次是现在。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">队列和堆栈</h1><div class="post-meta"><a href="/2019/06/01/队列和堆栈/#comments" class="comment-count"></a><p><span class="date">Jun 01, 2019</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h3 id="队列-queue-：先进先出数据结构-FIFO：first-in-first-out"><a href="#队列-queue-：先进先出数据结构-FIFO：first-in-first-out" class="headerlink" title="队列(queue)：先进先出数据结构(FIFO：first-in-first-out)"></a>队列(queue)：先进先出数据结构(FIFO：first-in-first-out)</h3><hr>
+<h4 id="先进先出的数据结构"><a href="#先进先出的数据结构" class="headerlink" title="先进先出的数据结构"></a>先进先出的数据结构</h4><p><img src="https://s3-lc-upload.s3.amazonaws.com/uploads/2018/05/03/screen-shot-2018-05-03-at-151021.png" alt="&#39;&#39;"></p>
+<p> 在FIFO数据结构中，添加到队列中的第一个元素将首先被处理。队列是典型的FIFO数据结构。insert操作也称为enqueue(入队)，新元素始终是被添加到队列的结尾。删除操作称为dequeue(出列)。你只被允许移除队列的第一个元素。</p>
+<h4 id="队列-实现"><a href="#队列-实现" class="headerlink" title="队列-实现"></a>队列-实现</h4><blockquote>
+<pre><code>package com.learn.dao;
+</code></pre></blockquote>
+<pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class MyQueue {
+
+    private List&lt;Integer&gt; data;
+
+    private int p_start;
+
+    public MyQueue() {
+        data = new ArrayList&lt;Integer&gt;();
+        p_start = 0;
+    }
+
+    public boolean enqueue(int x) {
+        data.add(x);
+        return true;
+    }
+
+    public boolean dequeue() {
+        if (isEmpty()) {
+            return false;
+        }
+        p_start++;
+        return true;
+    }
+
+    public int front() {
+        return data.get(p_start);
+    }
+
+    public boolean isEmpty() {
+        return p_start &gt;= data.size();
+    }
+
+    public static void main(String[] args) {
+        MyQueue myQueue = new MyQueue();
+        myQueue.enqueue(3);
+        myQueue.enqueue(5);
+        if(!myQueue.isEmpty()) {
+            System.out.println(myQueue.front());
+        }
+        myQueue.dequeue();
+        if(!myQueue.isEmpty()) {
+            System.out.println(myQueue.front());
+        }
+        myQueue.dequeue();
+        if(!myQueue.isEmpty()) {
+            System.out.println(myQueue.front());
+        }
+    }
+
+}
+</code></pre><h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a><em>缺点</em></h5><p>上面的实现很简单，但在某些情况下效率很低。随着起点指针的移动，会浪费越来越多的空间。如果我们空间有限时，这种实现是无法接受的。</p>
+<h4 id="设计循环队列"><a href="#设计循环队列" class="headerlink" title="设计循环队列"></a>设计循环队列</h4><p>循环队列是线性数据结构，其中基于FIFO原理执行操作、，并且最后位置连接回第一位置以形成圆。它也被称为“环形缓冲区”。</p>
+<p>循环队列的一个好处是我们可以利用队列前面的空格。在正常队列中，一旦队列变满，即使队列前面有空格，我们也无法插入下一个元素。但是使用循环队列，我们可以使用空下来的空间存储新值。</p>
+<h5 id="我的实现"><a href="#我的实现" class="headerlink" title="我的实现"></a>我的实现</h5><blockquote>
+<pre><code>package com.learn.dao;
+</code></pre></blockquote>
+<pre><code>import java.util.ArrayList;
+import java.util.List;
+
+public class MyCircularQueue {
+
+    private List&lt;Integer&gt; data;
+
+    private int p_start;
+
+    private int p_end;
+
+    private int dataSize;
+
+    public MyCircularQueue(int k) {
+        data = new ArrayList&lt;Integer&gt;(k);
+        dataSize = k;
+        p_start = 0;
+        p_end = -1;
+    }
+
+    public boolean enqueue(int x) {
+        if(isFull()) {
+            return false;
+        }
+        if((p_end + 1) &gt;= dataSize) {
+            p_end = -1;
+        }
+        data.add(p_end + 1, x);
+        p_end++;
+        return true;
+    }
+
+    public boolean dequeue() {
+        if (isEmpty()) {
+            return false;
+        }
+        data.remove(p_start);
+        p_start++;
+        if(p_start &gt;= dataSize) {
+            p_start = 0;
+        }
+        return true;
+    }
+
+    public int front() {
+        if(isEmpty()) {
+            return -1;
+        }
+        return data.get(p_start);
+    }
+
+    public int rear() {
+        if(isEmpty()) {
+            return -1;
+        }
+        return data.get(p_end);    
+    }
+
+    public boolean isEmpty() {
+        int size = data.size();
+        if(size &lt;= 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean isFull() {
+        int size = data.size();
+        if(size &gt;= dataSize) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        MyCircularQueue myQueue = new MyCircularQueue(3);
+        System.out.println(myQueue.enqueue(1));
+        System.out.println(myQueue.enqueue(2));
+        System.out.println(myQueue.enqueue(3));
+        System.out.println(myQueue.enqueue(4));
+        System.out.println(myQueue.rear());
+        System.out.println(myQueue.isFull());
+        System.out.println(myQueue.dequeue());
+        System.out.println(myQueue.enqueue(4));
+        System.out.println(myQueue.rear());
+    }
+
+}
+</code></pre><h5 id="其他实现"><a href="#其他实现" class="headerlink" title="其他实现"></a>其他实现</h5><blockquote>
+<pre><code>class MyCircularQueue {
+</code></pre></blockquote>
+<pre><code>    private int[] data;
+    private int head;
+    private int tail;
+    private int size;
+
+    /** Initialize your data structure here. Set the size of the queue to be k. */
+    public MyCircularQueue(int k) {
+        data = new int[k];
+        head = -1;
+        tail = -1;
+        size = k;
+    }
+
+    /** Insert an element into the circular queue. Return true if the operation is successful. */
+    public boolean enQueue(int value) {
+        if (isFull() == true) {
+            return false;
+        }
+        if (isEmpty() == true) {
+            head = 0;
+        }
+        tail = (tail + 1) % size;
+        data[tail] = value;
+        return true;
+    }
+
+    /** Delete an element from the circular queue. Return true if the operation is successful. */
+    public boolean deQueue() {
+        if (isEmpty() == true) {
+            return false;
+        }
+        if (head == tail) {
+            head = -1;
+            tail = -1;
+            return true;
+        }
+        head = (head + 1) % size;
+        return true;
+    }
+
+    /** Get the front item from the queue. */
+    public int Front() {
+        if (isEmpty() == true) {
+            return -1;
+        }
+        return data[head];
+    }
+
+    /** Get the last item from the queue. */
+    public int Rear() {
+        if (isEmpty() == true) {
+            return -1;
+        }
+        return data[tail];
+    }
+
+    /** Checks whether the circular queue is empty or not. */
+    public boolean isEmpty() {
+        return head == -1;
+    }
+
+    /** Checks whether the circular queue is full or not. */
+    public boolean isFull() {
+        return ((tail + 1) % size) == head;
+    }
+}
+</code></pre><h3 id="队列和BFS"><a href="#队列和BFS" class="headerlink" title="队列和BFS"></a>队列和BFS</h3><p>广度优先搜索算法(Breadth-first Search)的一个常见应用是找到从根节点到目标节点的最短路径。</p>
+<h4 id="BFS-模板"><a href="#BFS-模板" class="headerlink" title="BFS-模板"></a>BFS-模板</h4><blockquote>
+<pre><code>/**
+ * Return the length of the shortest path between root and target node.
+ */
+int BFS(Node root, Node target) {
+    Queue&lt;Node&gt; queue;  // store all nodes which are waiting to be processed
+    int step = 0;       // number of steps neeeded from root to current node
+    // initialize
+    add root to queue;
+    // BFS
+    while (queue is not empty) {
+        step = step + 1;
+        // iterate the nodes which are already in the queue
+        int size = queue.size();
+        for (int i = 0; i &lt; size; ++i) {
+            Node cur = the first node in queue;
+            return step if cur is target;
+            for (Node next : the neighbors of cur) {
+                add next to queue;
+            }
+            remove the first node from queue;
+        }
+    }
+    return -1;          // there is no path from root to target
+}
+</code></pre></blockquote>
+<h4 id="岛屿数量"><a href="#岛屿数量" class="headerlink" title="岛屿数量"></a>岛屿数量</h4><p>给定’1’s(土地)和’0’s(水)的2d网格图，计算岛屿的数量。岛被水包围，通过水平或垂直连接相邻的土地而形成。你可以假设网格的所有四个边都被水包围。</p>
+<h5 id="例1："><a href="#例1：" class="headerlink" title="例1："></a>例1：</h5><blockquote>
+<p>  输入：<br>    11110<br>    11010<br>    11000<br>    00000</p>
+</blockquote>
+<pre><code>输出：1
+</code></pre><h5 id="例2："><a href="#例2：" class="headerlink" title="例2："></a>例2：</h5><blockquote>
+<p>  输入：<br>    11000<br>    11000<br>    00100<br>    00011</p>
+</blockquote>
+<pre><code>输出：3
+</code></pre><h5 id="实现代码"><a href="#实现代码" class="headerlink" title="实现代码"></a>实现代码</h5><blockquote>
+<pre><code>package com.learn.dao;
+</code></pre></blockquote>
+<pre><code>public class NumIsland {
+
+    private char[][] gird;
+
+    private int rols;
+
+    private int cols;
+
+    private int count;
+
+    public NumIsland(char[][] tempGird) {
+        gird = tempGird;
+        count = 0;
+    }
+
+    public int calcIslandCount() {
+        rols = gird.length;
+        if(rols &lt;= 0){
+            return 0;
+        }
+        for(int i = 0; i &lt; rols; i++) {
+            cols = gird[i].length;
+            for(int j = 0; j &lt; cols; j++) {
+                if(gird[i][j] == &apos;1&apos;) {
+                    count++;
+                    doSearch(gird, i, j, rols, cols);
+                }
+            }
+        }
+        return count;
+    }
+
+    private void doSearch(char[][] tempGird, int i, int j, int rols, int cols) {
+        if(i &lt; 0 || j &lt; 0 || i &gt;= rols || j &gt;= cols) {
+            return;
+        }
+        if(gird[i][j] != &apos;1&apos;) {
+            return;
+        }
+        gird[i][j] = &apos;0&apos;;
+        doSearch(tempGird, i + 1, j, rols, cols);
+        doSearch(tempGird, i - 1, j, rols, cols);
+        doSearch(tempGird, i, j + 1, rols, cols);
+        doSearch(tempGird, i, j - 1, rols, cols);
+    }
+
+    public static void main(String[] args) {
+        char[][] grid = {{'1','1','1','1','0','0'},{'1','1','1','1','0','1'},{'1','1','1','1','0','0'},{'1','1','1','1','0','0'}};
+        NumIsland numIsland = new NumIsland(grid);
+        System.out.println(numIsland.calcIslandCount());
+    }
+}
+</code></pre><h4 id="Open-the-Lock-开锁"><a href="#Open-the-Lock-开锁" class="headerlink" title="Open the Lock 开锁"></a>Open the Lock 开锁</h4></div><div class="post-copyright"><blockquote><p>原文作者: zahra</p><p>原文链接: <a href="http://yoursite.com/2019/06/01/队列和堆栈/">http://yoursite.com/2019/06/01/队列和堆栈/</a></p><p>版权声明: 转载请注明出处(必须保留原文作者署名原文链接)</p></blockquote></div><div class="tags"></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2019/06/04/百度前端学院-2017/" class="pre">百度前端学院-2017</a></div><div id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8yOTgwNi82Mzcy"></div></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#队列-queue-：先进先出数据结构-FIFO：first-in-first-out"><span class="toc-text">队列(queue)：先进先出数据结构(FIFO：first-in-first-out)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#先进先出的数据结构"><span class="toc-text">先进先出的数据结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#队列-实现"><span class="toc-text">队列-实现</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#缺点"><span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#设计循环队列"><span class="toc-text">设计循环队列</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#我的实现"><span class="toc-text">我的实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#其他实现"><span class="toc-text">其他实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#队列和BFS"><span class="toc-text">队列和BFS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BFS-模板"><span class="toc-text">BFS-模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#岛屿数量"><span class="toc-text">岛屿数量</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#例1："><span class="toc-text">例1：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#例2："><span class="toc-text">例2：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#实现代码"><span class="toc-text">实现代码</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Open-the-Lock-开锁"><span class="toc-text">Open the Lock 开锁</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSS随记/">CSS随记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/动效设计/">动效设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/04/百度前端学院-2017/">百度前端学院-2017</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/队列和堆栈/">队列和堆栈</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zahra.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cee952a70be0da77981a447a3b9bbf1c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script><script>(function(d, s) {
+  var j, e = d.getElementsByTagName('body')[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.appendChild(j);
+})(document, 'script');
+</script></body></html>

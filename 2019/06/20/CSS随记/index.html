@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>CSS随记 | zahra</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style-dark.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight-dark.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">CSS随记</h1><a id="logo" href="/.">zahra</a><p class="description">种一棵树最好的时间是十年前，其次是现在。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">CSS随记</h1><div class="post-meta"><a href="/2019/06/20/CSS随记/#comments" class="comment-count"></a><p><span class="date">Jun 20, 2019</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><!-- # css小记 -->
+<!-- [toc] -->
+<p> 最近在公司做前端方面的工作，涉及到页面的编写。特此将刚刚知道的知识和碰过的坑整理一下，想到哪便写到哪。方便查阅。</p>
+<p> 写页面时注意兼容性，需要hack写法的就要多查阅不同浏览器版本的语法。也可以尝试新的技术。比如less、sass、stylus等。</p>
+<hr>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><ul>
+<li>编写页面之前，记得初始化背景画布，因为浏览器先是加载DOM树，然后再将元素的默认属性画上去。有一些元素的默认属性会影响页面布局和定位。例如ul有默认的换行（外边距）和左内边距。</li>
+</ul>
+<ul>
+<li><p>页面初始化需要的三种样式：</p>
+<ul>
+<li>重置样式(reset)：html的许多标签是有默认样式的。需要将它们初始化。</li>
+<li>公共样式(common)：公用的，可重复使用的样式。</li>
+<li>独立样式：相对于某个页面单独使用的样式。</li>
+</ul>
+</li>
+</ul>
+<pre><code>* { 
+    margin: 0;
+    padding: 0px;  &lt;!-- 值为1个时对应所有；值为2个时对应上下、左右；值为3个时对应上、左右、下；值为4个时分别对应上、右、下、左。  --&gt;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;  
+    -ms-box-sizing: border-box;  
+    -o-box-sizing: border-box;  
+    box-sizing: border-box;  
+}
+body {
+    background-color: #f8f8fd;  
+    font-size: 0.875rem;  
+    /*  max-width: 10rem;  */  
+}
+</code></pre><p> 可以设置默认的<strong>body背景色</strong>，元素之间切割有距离时露出背景色挺方便。</p>
+<h4 id="rem"><a href="#rem" class="headerlink" title="rem"></a>rem</h4><p><br> 使用<strong>rem</strong>做移动端网页，font-size应初始化在html根元素上，一般浏览器默认值为<strong>16px = 1rem</strong>。如果根元素为16px，那么每增加2px会增加0.125rem。每增加10px会增加0.625rem。(google浏览器默认中文最小字体为12px。&lt;12一律显示为12px大小。但允许设置为0。最小字体限制数可以在浏览器的设置中更改)</p>
+<h4 id="max-width、min-width"><a href="#max-width、min-width" class="headerlink" title="max-width、min-width"></a>max-width、min-width</h4><p><br> 使用<strong>max-width</strong>属性时，要小心，它可以让浏览器更好的处理小窗口的情况。这点在移动设备上尤为重要。我记得我使用了两次，第一次很成功，第二次页面就缩小了一半、、、暂时不知道为啥。使用min-width时，如果最小宽度大于可视宽度，会出现滚动条；当可视宽度变化为小于或等于最小宽度时，页面内容不会随宽度的缩小而缩小。可能部分内容需要移动滚动条才可查看。</p>
+<h4 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h4><p><br> 在我的印象中，一个简单的应用是块级元素（display: block）可以使用此属性轻松居中。简单又很酷。</p>
+<pre><code>div {  
+  display: block;  
+  margin: 0 auto;  
+  max-width: 600px;  
+  /*  
+  当div的宽度大于可视区的宽度时，浏览器会显示一个水平滚动条来容纳页面。用这个属性可以避免这种情况。更酷。  
+  */  
+}
+</code></pre><h4 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h4><pre><code>box-sizing: border-box  
+(内边距、边框宽度在设置的元素尺寸之内。盒子尺寸=设置的元素尺寸);  
+ box-sizing: content-box  
+(内边距、边框宽度、外边距在设置的元素尺寸的外围。盒子实际尺寸&gt;=设置的元素尺寸);
+</code></pre><blockquote>
+<p>注：为了向前兼容老版本的浏览器，某些属性会加前缀<br>  <strong>-webkit-</strong>：google,safari私有属性;<br>  <strong>-moz-</strong>：firefox私有属性;<br>  <strong>-ms-</strong>：internet explorer私有属性;<br>  <strong>-o-</strong>：opera私有属性;</p>
+</blockquote>
+<pre><code>-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+-ms-box-sizing: border-box;
+-o-box-sizing: border-box;
+box-sizing: border-box;
+</code></pre><hr>
+<h3 id="布局"><a href="#布局" class="headerlink" title="布局"></a>布局</h3><p><br></p>
+<h4 id="flex"><a href="#flex" class="headerlink" title="flex"></a>flex</h4><p> <br> 弹性布局/伸缩盒子。设为flex布局后，子元素的float、clear、vertical-align属性将失效。</p>
+<pre><code>.flex {  
+  display: -webkit-flex;  
+  display: flex;  
+}  
+/*  webkit内核的浏览器，必须加上-webkit-前缀  */  
+
+
+.div1 {  
+  -moz-box-flex: 1.0;    
+  -webkit-box-flex: 1.0;  
+  box-flex: 1.0;  
+}
+
+
+.div2 {  
+  -moz-box-flex: 2.0;  
+  -webkit-box-flex: 2.0;  
+  box-flex: 2.0;  
+}
+</code></pre><p><br>      </p>
+<h4 id="box"><a href="#box" class="headerlink" title="box"></a>box</h4><p> <br> box-flex主要让子容器针对父容器的宽度按一定规则进行划分</p>
+<h5 id="box属性"><a href="#box属性" class="headerlink" title="box属性"></a>box属性</h5><pre><code>box-orient | box-direction | box-align | box-pack | box-lines
+</code></pre><ul>
+<li>box-orient<br>用来确定父容器里子容器的排列方式，是水平还是垂直。</li>
+</ul>
+<pre><code>horizontal | vertical | inline-axis | block-axis | inherit
+</code></pre><p> 给box设置horizontal或inline-axis属性其效果似乎表现一致，都可将子容器水平排列</p>
+<p> 如果父容器选择horizontal或inline-axis属性对子容器进行水平排列，其是对父容器的宽度进行分配划分。此时如果父容器定义了高度值，其子容器的高度值设置则无效状态，所有子容器的高度等于父容器的高度值；如果父容器不设置高度值，其子容器的高度值才有效并且取最大高度值的子容器的高度。</p>
+<p> 给box设置vertical或block-axis属性(此属性是默认值)其效果似乎表现一致，都可将子容器垂直排列</p>
+<p> 如果父容器选择vertical或block-axis属性对子容器进行垂直排列，其是对父容器的高度进行分配划分。此时如果父容器<br>定义了宽度值，其子容器的宽度值设置则无效状态；如果父容器不设置宽度值，其子容器的宽度值才有效并且取最大宽度值的子容器的宽度。</p>
+<p> inherit属性则是让子容器继承父容器的相关属性</p>
+<ul>
+<li>box-direction<br>用来确定父容器里的子容器排列顺序</li>
+</ul>
+<pre><code>normal | reverse | inherit
+&lt;!-- normal是默认值，按照HTML文档里结构的先后顺序依次展示 --&gt;
+&lt;!-- reverse表示反转 --&gt;
+</code></pre><ul>
+<li>box-align<br>表示父容器里面子容器的垂直对齐方式</li>
+</ul>
+<pre><code>start | end | center | baseline | stretch
+&lt;!-- start：在box-align表示居顶对齐 --&gt;
+&lt;!-- end：在box-align表示居底对齐 --&gt;
+&lt;!-- center：在box-align表示居中对齐 --&gt;
+&lt;!-- stretch：在box-align表示拉伸，拉伸到与父容器等高 --&gt;
+</code></pre><ul>
+<li>box-pack<br>表示父容器里面子容器的水平对齐方式</li>
+</ul>
+<pre><code>start | end | center | justify
+&lt;!-- start：在box-pack表示水平居左对齐 --&gt;
+&lt;!-- end：在box-pack表示水平居右对齐 --&gt;
+&lt;!-- center：在box-pack表示水平居中对齐 --&gt;
+&lt;!-- justify:在box-pack表示水平等分父容器宽度 --&gt;
+</code></pre><p><a href="https://www.cnblogs.com/leejersey/p/3795885.html" target="_blank" rel="noopener">移动web开发实践-css3（1）盒模型display:-webkit-box;的使用</a></p>
+<p><br></p>
+<h4 id="position"><a href="#position" class="headerlink" title="position"></a>position</h4><p><br> 定位和z-index配合使用时，可以将元素分为不同的层级。</p>
+<ul>
+<li>常用的属性值 <ul>
+<li>relative：相对定位</li>
+<li>absolute：绝对定位</li>
+<li>fixed：固定定位</li>
+</ul>
+</li>
+</ul>
+<h5 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h5><p><br> 默认使用相对定位时，元素是相对于原有位置进行移动。移动完成后，它依然存在于原来的文档流中，所以在原有位置会有一段空白，如果不注意的话，就无法得到自己想要的效果。这时可以试试将元素的外边距设为负数看能不能达到相同的效果。</p>
+<pre><code>&lt;!-- 使用相对定位移动元素 --&gt;
+.cover {
+    position: relative;
+    top: -10px; &lt;!-- 会在原有位置留有空白 --&gt;
+}
+&lt;!-- 使用margin实现同样的效果 --&gt;
+.cover {
+    margin-top: -10px;
+    &lt;!-- 不会留有空白 --&gt;
+}
+</code></pre><h5 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h5><p><br> 使用绝对定位时，场景比较多的是先将父元素进行相对定位（relative），再将子元素设置为绝对定位（absolute），再根据实际情况上下左右调整距离。absolute定位的元素会脱离文档流，如果父元素里面没有其他在文档流中的元素时，父元素会塌陷。</p>
+<pre><code>.father {
+    postion: relative
+}
+.son {
+    postion: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    &lt;!-- son元素位置无变化，在父元素的左上角 --&gt;
+}
+</code></pre><h5 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h5><p><br> 固定定位可以将元素固定在某一个位置，不随滚动条的滚动而滚动，可以简单视为相对于可视区去定位。</p>
+<pre><code>&lt;!-- 实现移动端页面底部菜单浮动 --&gt;
+.footer-menu {  
+  width: 100%;  
+  position: fixed;  
+  bottom: 0;  
+}
+</code></pre><p><a href="http://ife.baidu.com/note/detail/id/662" target="_blank" rel="noopener">理解绝对定位</a></p>
+<h4 id="display"><a href="#display" class="headerlink" title="display"></a>display</h4><p><br> 这是一个神奇的属性，有非常多的属性值。对布局很有用。不过我只掌握了常用的几种。（inline，inline-block，block）</p>
+<ul>
+<li><p><strong>inline</strong><br>显示为内联元素，不可设置元素宽高、垂直居中，内边距只对左、右、下起作用，外边距只对左、右起作用。可设置文本对齐。<br>不过使用绝对定位/浮动后，inline元素变为inline-block元素。以上的效果都有效。</p>
+</li>
+<li><p><strong>inline-block</strong><br>这是我使用的比较多的一个值，也是我认为比较酷的一个选项。我经常使用它来将多个li元素排列为一行。它同时具备内联元素、块级元素的特点。（内联块状元素）它有如下特点：<br>a. 和其他元素都在一行上<br>b. 元素的宽、高、行高以及顶和底边距都可以设置<br>c. vertical-align属性会影响到inline-block元素    ，你可能会把它的值设置为top<br>d. 你需要设置每一列的宽度<br>e. 如果HTML源代码中元素之间有空格，那么列与列    之间会产生空隙</p>
+</li>
+</ul>
+<ul>
+<li><strong>block</strong><br>块级元素，可设置宽、高、内外边距、行高、、、独占一行。</li>
+</ul>
+<h4 id="百分比宽度"><a href="#百分比宽度" class="headerlink" title="百分比宽度"></a>百分比宽度</h4><p><br> 百分比是一种相对于包含块的计量单位。这个简直不要太爽。我经常利用它加inline-block实现li元素多行多列的布局。</p>
+<pre><code>父元素  
+div {  
+  width: 100%;  
+  background-color: #fff;  
+}  
+li {  
+  /*  
+  宽度随需求而定，24%相当于一行显示4列  
+  */  
+  width: 24%;  
+  display: inline-block;  /*这个是关键  */  
+  text-align: center;  
+  /*可以让li内的元素居中 */  
+  padding: 0.3125rem 03125rem;  
+  /*可以使布局更美观 */  
+  position: relative;  
+  /*与子元素的绝对定位使用，你让它向东绝不会向西。 */  
+}
+或者
+li {
+    width: 25%;  
+    float: left;
+}
+</code></pre><h4 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h4><p><br> 经常出现一个情况，子元素全部浮动起来了，然后父元素没有被撑起来。曾经让我很抠脑壳。后来终于发现了两种方法解决这个顽疾。  </p>
+<ul>
+<li><p>在父元素中再添加一个子元素，设置子元素不透明度为0（opacity: 0）。然后子元素再clear:    both。完美结局。  </p>
+</li>
+<li><p>但是我更喜欢第二种，不用添加元素。使用伪类实现。  </p>
+</li>
+</ul>
+<pre><code>img(浮动的元素或父元素):after,img:before {  
+    content: &apos;&apos;,  
+    clear: both;
+}
+</code></pre><p>经常使用的清除浮动的类：</p>
+<pre><code>.clearfix:before,.clearfix:after {
+    content: &apos;&apos;;
+    display: table;
+}
+.clearfix:after {   &lt;!-- 伪类与前面的冒号不能有空格，有空格会失效 --&gt;
+    clear: both;
+}
+</code></pre><p><a href="http://zh.learnlayout.com/toc.html" title="点击吧，超实用" target="_blank" rel="noopener">这里</a>有网页布局的许多知识。曾经帮助我实现css布局入门。</p>
+<hr>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><br></p>
+<h4 id="一行文本省略"><a href="#一行文本省略" class="headerlink" title="一行文本省略"></a>一行文本省略</h4><pre><code>overflow: hidden;
+text-overflow: ellipsis;    //  ...
+white-space: nowrap;    
+</code></pre><p>多行可以加上line-height和display配合使用。(貌似还有height)</p>
+<h4 id="img和span行内对齐"><a href="#img和span行内对齐" class="headerlink" title="img和span行内对齐"></a>img和span行内对齐</h4><p><br> 只能说我太笨了，某天遇到这个坑时，纠结了半天，左调调右调调，就是对不齐，抠脑壳。最后发现是如此的简单。  </p>
+<pre><code>img {  
+    width: 1.25rem;  
+    height: 1.25rem;  
+    vertical-align: middle;  
+}  
+
+
+span {  
+    display: inline-block;  
+    vertical-align: middle;  
+}  
+</code></pre><p>  <em>注意：两个元素必须都是inline-block元素，并且img一定要设置宽、高。 </em><br><br>  </p>
+<h4 id="media-css3"><a href="#media-css3" class="headerlink" title="@media(css3)"></a>@media(css3)</h4><p><br><br> 1、 语法</p>
+<pre><code>@media mediaType and|not|only (media feature) {  
+    /*CSS-Code;*/  
+}
+</code></pre><p> 媒体类型（mediaType ）：常用</p>
+<pre><code>all    用于所有设备
+print    用于打印机和打印预览
+screen    用于电脑屏幕，平板电脑，智能手机等。speech    应用于屏幕阅读器等发声设备
+</code></pre><p>媒体功能（media feature）：常用</p>
+<pre><code>max-width    定义输出设备中的页面最大可见区域宽度
+min-width    定义输出设备中的页面最小可见区域宽度
+</code></pre><p> 2、 准备工作  </p>
+<ul>
+<li>设置Meta标签</li>
+</ul>
+<pre><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, user-scalable=no&quot;&gt;
+</code></pre><p>width = device-width：宽度等于当前设备的宽度<br>initial-scale：初始的缩放比例（默认设置为1.0，即代表不缩放）<br>user-scalable：用户是否可以手动缩放（默认设置为no，因为我们不希望用户放大缩小页面）</p>
+<ul>
+<li>加载兼容文件JS<br>因为IE8既不支持HTML5也不支持CSS3 @media ，所以我们需要加载两个JS文件，来保证我们的代码实现兼容效果</li>
+</ul>
+<ul>
+<li>设置IE渲染方式默认为最高(可选)  </li>
+</ul>
+<pre><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=Edge，chrome=1&quot;&gt;
+</code></pre><p>这段代码后面加了一个chrome=1，如果用户的电脑里安装了 chrome，就可以让电脑里面的IE不管是哪个版本的都可以使用Webkit引擎及V8引擎进行排版及运算，如果没有安装，就显示IE最新的渲染模式。</p>
+<ul>
+<li>实例</li>
+</ul>
+<pre><code>@media screen and (min-width:300px) and (max-width:500px) {
+    /* CSS 代码 */
+}
+</code></pre><p>min-width:300px 的作用是当文档宽度不小于 300px 的时候就应用 {} 里的CSS代码块，即大于等于 300px<br>max-width:500px 的作用是当文档宽度不大于 500px 的时候就应用{} 里的CSS代码块，即小于等于 500px</p>
+<p><a href="https://www.cnblogs.com/baiyii/p/6973437.html" target="_blank" rel="noopener">原文链接</a></p>
+<h4 id="移动屏幕分辨率"><a href="#移动屏幕分辨率" class="headerlink" title="移动屏幕分辨率"></a>移动屏幕分辨率</h4><p><br>做移动端的页面，需要兼容各种型号，尺寸的设备。手机的话一般最小兼容到320*480，这是iphone4的屏幕分辨率。</p>
+<h4 id="阴影"><a href="#阴影" class="headerlink" title="阴影"></a>阴影</h4><ul>
+<li><p>box-shadow：边框阴影</p>
+<p>  box-shadow的常用属性值：<br>  h-shadow：必需。水平阴影的位置。允许负值<br>  v-shadow：必需。垂直阴影的位置。允许负值<br>  blur：可选。模糊距离<br>  spread：可选。阴影的尺寸。<br>  color：可选。阴影的颜色。请参阅 CSS 颜色值。<br>  inset：可选。将外部阴影 (outset) 改为内部阴影</p>
+</li>
+</ul>
+<p><a href="http://web.jobbole.com/87938/" target="_blank" rel="noopener">探索 CSS3 中的 box-shadow 属性</a></p>
+<ul>
+<li><p>text-shadow：文本阴影</p>
+<p>  text-shadow的常用属性值：<br>  h-shadow：必需。水平阴影的位置。允许负值<br>  v-shadow：必需。垂直阴影的位置。允许负值<br>  blur：可选。模糊的距离<br>  color：可选。阴影的颜色</p>
+</li>
+</ul>
+<h4 id="border-collapse"><a href="#border-collapse" class="headerlink" title="border-collapse"></a>border-collapse</h4><p><br>border-collapse属性设置表格的边框是否被合并为一个单一的边框。 </p>
+<p><strong>separate</strong>是默认值，边框会被分开，不会忽略border-spacing和empty-cells属性。 </p>
+<p><strong>collapse</strong>如果可能，边框会合并为一个单一的边框，会忽略border-spacing和empty-cells属性。</p>
+<h4 id="table细边框"><a href="#table细边框" class="headerlink" title="table细边框"></a>table细边框</h4><pre><code>table {
+    border-collapse: collapse;     
+    border: none; 
+    width: 100%;    &lt;!-- 可有可无，不影响效果，加上更美观 --&gt;
+}
+table td {
+    border: solid #CBCBCB 1px;
+}
+</code></pre><h4 id="li元素注意事项"><a href="#li元素注意事项" class="headerlink" title="li元素注意事项"></a>li元素注意事项</h4><ul>
+<li><p>设置：<strong>display: inline-block;</strong> 之后，由于<strong>li的默认display: list-item(有小黑点);</strong> 所以相当于你改变了它的本质属性，小黑点会消失。</p>
+</li>
+<li><p>设置：<strong>float: left;</strong> 元素会从左至右排列；<strong>float: right;</strong> 元素会从右至左排列。</p>
+</li>
+<li><p><strong>list-style-position: inside;</strong><br>li元素的小黑点的显示位置是由list-style-position属性决定的，默认效果是outside，在li的外面，它不占用li的宽度；还可以设置成inside，在li的里面，会占用li的宽度。</p>
+</li>
+</ul>
+<h4 id="去a下划线"><a href="#去a下划线" class="headerlink" title="去a下划线"></a>去a下划线</h4><pre><code>a {
+    text-decoration: none;
+}
+</code></pre><h4 id="button按钮常用样式"><a href="#button按钮常用样式" class="headerlink" title="button按钮常用样式"></a>button按钮常用样式</h4><ul>
+<li>去掉按钮默认灰色边框</li>
+</ul>
+<pre><code>button {
+    border: none;
+}
+</code></pre><ul>
+<li>按钮边角圆角度</li>
+</ul>
+<pre><code>button {
+     border-radius: 10px;
+ }
+</code></pre><ul>
+<li>按钮点击时去掉蓝色边框 </li>
+</ul>
+<pre><code>button {
+    outline: none;
+}
+</code></pre><h4 id="画倒三角"><a href="#画倒三角" class="headerlink" title="画倒三角"></a>画倒三角</h4><pre><code>&lt;div class=&quot;bg-black&quot;&gt;
+    &lt;span class=&quot;triangle-down&quot;&gt;
+
+    &lt;/span&gt;
+&lt;/div&gt;
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.bg-black {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+}
+.triangle-down {
+    width: 0;
+    height: 0;
+    line-height: 45px;
+    border-color: transparent transparent rgba(37,74,108,1.00);
+    border-width: 0px 5px 8px 5px;
+    border-style: solid;
+}
+</code></pre><h4 id="opacity"><a href="#opacity" class="headerlink" title="opacity"></a>opacity</h4><p><br> opacity：不透明度，取值从0-1，越大越不透明，越小越透明。</p>
+<p> 当向父元素的背景添加opacity属性，所有它的子元素也变为透明，若子元素为文本则不容易看清楚，如果不想使子元素透明，使用RGBA颜色值</p>
+<h4 id="font-variant"><a href="#font-variant" class="headerlink" title="font-variant"></a>font-variant</h4><pre><code>font-variant:small-caps;
+&lt;!-- 浏览器会显示小型大写字母的字体 --&gt;
+</code></pre><h4 id="text-transform"><a href="#text-transform" class="headerlink" title="text-transform"></a>text-transform</h4><pre><code>none
+&lt;!-- 默认。定义带有小写字母和大写字母的标准的文本 --&gt;
+capitalize
+&lt;!-- 文本中的每个单词以大写字母开头 --&gt;
+uppercase
+&lt;!-- 定义仅有大写字母 --&gt;
+lowercase
+&lt;!--     定义无大写字母，仅有小写字母 --&gt;
+</code></pre><h4 id="overflow-wrap"><a href="#overflow-wrap" class="headerlink" title="overflow-wrap"></a>overflow-wrap</h4><p><br> 用来说明当一个不能被分开的字符串太长而不能填充其包裹盒时，为防止其溢出，浏览器是否允许这样的单词中断换行(word-wrap 属性原本属于微软的一个私有属性，在 CSS3 现在的文本规范草案中已经被重名为 overflow-wrap 。 word-wrap 现在被当作 overflow-wrap 的 “别名”)</p>
+<pre><code>normal
+&lt;!-- 表示在正常的单词结束处换行 --&gt;
+break-word
+&lt;!-- 表示如果行内没有多余的地方容纳该单词到结尾，则那些正常的不能被分割的单词会被强制分割换行 --&gt;
+</code></pre><h4 id="text-align"><a href="#text-align" class="headerlink" title="text-align"></a>text-align</h4><pre><code>left：向左对齐
+right：向右对齐
+center：居中对齐
+justify：两端对齐
+</code></pre><p><br> 预知后事如何，请看下回分解…</p>
+</div><div class="post-copyright"><blockquote><p>原文作者: zahra</p><p>原文链接: <a href="http://yoursite.com/2019/06/20/CSS随记/">http://yoursite.com/2019/06/20/CSS随记/</a></p><p>版权声明: 转载请注明出处(必须保留原文作者署名原文链接)</p></blockquote></div><div class="tags"></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2019/06/19/动效设计/" class="next">动效设计</a></div><div id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8yOTgwNi82Mzcy"></div></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#rem"><span class="toc-text">rem</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#max-width、min-width"><span class="toc-text">max-width、min-width</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#margin"><span class="toc-text">margin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#box-sizing"><span class="toc-text">box-sizing</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布局"><span class="toc-text">布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#flex"><span class="toc-text">flex</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#box"><span class="toc-text">box</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#box属性"><span class="toc-text">box属性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#position"><span class="toc-text">position</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#relative"><span class="toc-text">relative</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#absolute"><span class="toc-text">absolute</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#fixed"><span class="toc-text">fixed</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#display"><span class="toc-text">display</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#百分比宽度"><span class="toc-text">百分比宽度</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#清除浮动"><span class="toc-text">清除浮动</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一行文本省略"><span class="toc-text">一行文本省略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#img和span行内对齐"><span class="toc-text">img和span行内对齐</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#media-css3"><span class="toc-text">@media(css3)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#移动屏幕分辨率"><span class="toc-text">移动屏幕分辨率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阴影"><span class="toc-text">阴影</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#border-collapse"><span class="toc-text">border-collapse</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#table细边框"><span class="toc-text">table细边框</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#li元素注意事项"><span class="toc-text">li元素注意事项</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#去a下划线"><span class="toc-text">去a下划线</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#button按钮常用样式"><span class="toc-text">button按钮常用样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#画倒三角"><span class="toc-text">画倒三角</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#opacity"><span class="toc-text">opacity</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#font-variant"><span class="toc-text">font-variant</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#text-transform"><span class="toc-text">text-transform</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#overflow-wrap"><span class="toc-text">overflow-wrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#text-align"><span class="toc-text">text-align</span></a></li></ol></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSS随记/">CSS随记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/动效设计/">动效设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/04/百度前端学院-2017/">百度前端学院-2017</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/队列和堆栈/">队列和堆栈</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> 标签</i></div><div class="tagcloud"></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zahra.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cee952a70be0da77981a447a3b9bbf1c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script><script>(function(d, s) {
+  var j, e = d.getElementsByTagName('body')[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.appendChild(j);
+})(document, 'script');
+</script></body></html>
