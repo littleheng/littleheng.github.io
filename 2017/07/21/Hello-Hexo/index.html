@@ -1,0 +1,255 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="种一棵树最好的时间是十年前，其次是现在。"><meta name="keywords" content="zahra, littleheng, java, css"><title>hello markdown! | zahra</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">hello markdown!</h1><a id="logo" href="/.">zahra</a><p class="description">种一棵树最好的时间是十年前，其次是现在。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="搜索"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">hello markdown!</h1><div class="post-meta"><a href="/2017/07/21/Hello-Hexo/#comments" class="comment-count"></a><p><span class="date">Jul 21, 2017</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h6 id="这是H6"><a href="#这是H6" class="headerlink" title="这是H6"></a>这是H6</h6><h2 id="这是H2"><a href="#这是H2" class="headerlink" title="这是H2"></a>这是H2</h2><h1 id="这是H1"><a href="#这是H1" class="headerlink" title="这是H1"></a>这是H1</h1><!-- # 这是H1 -->
+<blockquote>
+<p>Markdown标记区块引用是使用类似email中用&gt;的引用方式。如果你还熟悉在email信件中的引言部分，你就知道怎么在Markdown文件中建立一个区块引用，那会看起来像是你自己先断好行，然后在每行的最前面加上&gt;；&gt;</p>
+</blockquote>
+<blockquote>
+<p>Markdown也允许你偷懒只在整个段落的第一行最前面加上；</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p>区块引用可以嵌套（例如：引用内的引用），只要根据层次加上不同数量的&gt;；</p>
+</blockquote>
+<p>Back to the first level.</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>这是第一行列表项。</li>
+<li>这是第二行列表项。</li>
+</ol>
+</blockquote>
+<blockquote>
+<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);
+</code></pre></blockquote>
+<ul>
+<li>Markdown支持有序列表和无序列表</li>
+</ul>
+<ul>
+<li>无序列表使用星号、加号或是减号作为列表标记；</li>
+</ul>
+<ol>
+<li>有序列表则使用数字接着一个英文句点；</li>
+</ol>
+<ul>
+<li>要让列表看起来更漂亮，你可以把内容用固定的缩进整理好。列表项目标记通常是放在最左边，但是其实也可以缩进，最多 3 个空格，项目标记后面则一定要接着至少一个空格或制表符。</li>
+</ul>
+<ol>
+<li>列表项目可以包含多个段落，每个项目下的段落都必须缩进4个空格或是1个制表符。</li>
+</ol>
+<ul>
+<li>如果要在列表项目内放进引用，那&gt;就需要缩进。</li>
+</ul>
+<ul>
+<li>如果要放代码块的话，该区块就需要缩进两次，也就是8个空格或是2个制表符。</li>
+</ul>
+<pre><code>要在Markdown中建立代码区块很简单，只要简单地缩进4个空格或是1个制表符就可以
+</code></pre><hr>
+<hr>
+<hr>
+<ul>
+<li>分隔线</li>
+</ul>
+<blockquote>
+<p>Markdown支持两种形式的链接语法：行内式和参考式两种形式。不管是哪一种，链接文字都是用[方括号]来标记。</p>
+</blockquote>
+<p>This is <a href="http://example.com/" title="Title" target="_blank" rel="noopener">an example</a> inline link.</p>
+<p><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute.</p>
+<blockquote>
+<p>如果你要链接到同样主机的资源，你可以使用相对路径。</p>
+</blockquote>
+<p>See my <a href="/about/">About</a> page for details.</p>
+<blockquote>
+<p>参考式的链接是在链接文字的括号后面再接上另一个方括号，而在第二个方括号里面要填入用以辨识链接的标记。</p>
+</blockquote>
+<p>This is <a href="http://example.com/" title="Optional Title Here" target="_blank" rel="noopener">an example</a> reference-style link.</p>
+<blockquote>
+<p>你也可以选择性地在两个方括号中间加上一个空格。</p>
+</blockquote>
+<p>This is <a href="http://example.com/" title="Optional Title Here" target="_blank" rel="noopener">an example</a> reference-style link.</p>
+<blockquote>
+<p>接着，在文件的任意处，你可以把这个标记的链接内容定义出来。</p>
+</blockquote>
+<p>链接内容定义的形式为：</p>
+<ul>
+<li>方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字</li>
+<li>接着一个冒号</li>
+<li>接着一个以上的空格或制表符</li>
+<li>接着链接的地址</li>
+<li>选择性的接着title内容，可以用单引号、双引号或是括弧包着</li>
+</ul>
+<blockquote>
+<p>下面这三种链接的定义都是相同：<br><a href="http://example.com/" title="Optional Title Here" target="_blank" rel="noopener">foo</a>: <a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a>  “Optional Title Here”</p>
+</blockquote>
+<blockquote>
+<p>请注意：有一个已知的问题是Markdown.pl 1.0.1会忽略单引号包起来的链接title。</p>
+</blockquote>
+<blockquote>
+<p>链接网址也可以用方括号包起来：<br><a href="http://example.com/" title="Optional Title Here" target="_blank" rel="noopener">id</a>: “Optional Title Here”</p>
+</blockquote>
+<blockquote>
+<p>你也可以把title属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：</p>
+</blockquote>
+<blockquote>
+<p>网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。<br>链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面这两个链接是一样的：</p>
+</blockquote>
+<p>[link text][a]<br>[link text][A]</p>
+<blockquote>
+<p>隐式链接标记功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果要让Google链接到google.com，你可以简化成：</p>
+</blockquote>
+<p><a href="http://google.com/" target="_blank" rel="noopener">Google</a></p>
+<blockquote>
+<p>然后定义链接内容：</p>
+</blockquote>
+<blockquote>
+<p>由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：</p>
+</blockquote>
+<p>Visit <a href="http://daringfireball.net/" target="_blank" rel="noopener">Daring Fireball</a> for more information.</p>
+<blockquote>
+<p>然后接着定义链接</p>
+</blockquote>
+<blockquote>
+<p>链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现的段落的后面，你也可以把它放在文件的最后面，就好像注解一样。</p>
+</blockquote>
+<blockquote>
+<p>下面是一个参考式链接的范例：</p>
+</blockquote>
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google" target="_blank" rel="noopener">Google</a> than from <a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a>.</p>
+<blockquote>
+<p>如果改成用链接名称的方式写：</p>
+</blockquote>
+<p>I get 10 times more traffic from <a href="http://google.com/" target="_blank" rel="noopener">Google</a> than from <a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a>.</p>
+<blockquote>
+<p>下面是用行内式写的同样一段内容的Markdown文件，提供作为比较之用：</p>
+</blockquote>
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google" target="_blank" rel="noopener">Google</a> than from <a href="http://search.yahoo.com/" title="Yahoo Search" target="_blank" rel="noopener">Yahoo</a> or<br><a href="http://search.msn.com/" title="MSN Search" target="_blank" rel="noopener">MSN</a></p>
+<blockquote>
+<p>参考式的链接其实重点不在于它比较好写，而是它比较好读，比较一下上面的范例，使用参考式的文章本身只有81个字符，但是用行内形式的却会增加到176个字元，如果使用纯HTML格式来写，会有234个字元，在HTML格式中，标签比文本还要多。</p>
+</blockquote>
+<blockquote>
+<p>使用Markdown的参考式链接，可以让文件更像是浏览器最后产生的结果，让你可以把一些标记相关的元数据移到段落文字之外，你就可以增加链接而不让文章的阅读感觉被打断。</p>
+</blockquote>
+<p><strong>强调</strong></p>
+<blockquote>
+<p>Markdown使用星号(<em>)和底线(_)作为标记强调字词的符号，被</em>或<em>包围的字词会被转成<em>标签包围，用两个*或</em>包起来的话，则会被转成<strong>，例如：</strong></em></p>
+</blockquote>
+<p><em>single asterisks</em><br><em>single underscores</em><br><strong>double asterisks</strong><br><strong>double underscores</strong></p>
+<blockquote>
+<p>你可以随便使用你喜欢的样式，唯一的限制是，你用什么符号开启标签，就要用什么符号结束。</p>
+</blockquote>
+<blockquote>
+<p>强调也可以直接插在文字中间：</p>
+</blockquote>
+<p>un<em>friging</em>believable<br>un<strong>friging</strong>believable</p>
+<blockquote>
+<p>但是如果你的*和_两边都有空白的话，它们就只会被当成普通的符号。</p>
+</blockquote>
+<blockquote>
+<p>如果要在文字前后直接插入普通的星号或底线，你可以用反斜线\：</p>
+</blockquote>
+<p>* this text is surrounded by literal asterisks*</p>
+<p><strong>代码</strong></p>
+<blockquote>
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：</p>
+</blockquote>
+<p>Use the <code>printf()</code> function.</p>
+<blockquote>
+<p>如果要在代码区段内插入反引号，你可以用多个反引号来开启和结束代码区段：</p>
+</blockquote>
+<p><code>There is a literal backtick (`) here.</code></p>
+<blockquote>
+<p>代码区段的起始和结束端都可以放入一个空白，起始端后面一个，结束端前面一个，这样你就可以在区段的一开始就插入反引号：</p>
+</blockquote>
+<p>A single backtick in a code span: <code>`</code><br>A backtik-delimited string in a code span: <code>`foo`</code></p>
+<blockquote>
+<p>在代码区段内，&amp;和方括号都会被自动地转成HTML实体，这使得插入HTML原始码变得很容易。</p>
+</blockquote>
+<p><code>&amp;#8212;</code> is the decimal-encoded equivalent of <code>&amp;mdash;</code>.</p>
+<p><strong>图片</strong></p>
+<blockquote>
+<p>很明显地，要在纯文字应用中设计一个[自然]的语法来插入图片是有一定难度的。</p>
+</blockquote>
+<blockquote>
+<p>Markdown使用一种和链接很相似的语法来标记图片，同样也允许两种样式：行内式和参考式。</p>
+</blockquote>
+<blockquote>
+<p>行内式的图片语法看起来像是：</p>
+</blockquote>
+<p><img src="G:\我的图片\example.png" alt="image1"></p>
+<p><img src="G:\我的图片\example.pngg" alt="image" title="Option title"></p>
+<blockquote>
+<p>详细叙述如下：</p>
+<ul>
+<li>一个惊叹号！</li>
+<li>接着一个方括号，里面放上图片的替代文字</li>
+<li>接着一个普通括号，里面放上图片的网址，最后还可以用引号包住并加上选择性的’title’文字。</li>
+</ul>
+</blockquote>
+<p><img src="http://example.com/" alt="Alt text" title="Optional Title Here"></p>
+<blockquote>
+<p>id是图片参考的名称，图片参考的定义方式则和连结参考一样：</p>
+</blockquote>
+<blockquote>
+<p>到目前为止，Markdown还没有办法指定图片的宽高，如果你需要的话，你可以使用普通的<img>标签。</p>
+</blockquote>
+<p><strong>其它</strong></p>
+<p><strong><strong>自动链接</strong></strong></p>
+<p>Markdown支持以比较简短的自动链接形式来处理网址和电子邮件信箱，只要是用方括号包起来，Markdown就会自动把它转成链接，一般网址的链接文字就和链接地址一样，例如：</p>
+<p><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
+<p>邮址的自动链接也很类似，只是Markdown会先做一个编码转换的过程，把文字字符转成16进位码的HTML实体，这样的格式可以糊弄一些不好的邮址收集机器人，例如：</p>
+<p><a href="mailto:&#x61;&#100;&#x64;&#114;&#x65;&#x73;&#115;&#64;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;" target="_blank" rel="noopener">&#x61;&#100;&#x64;&#114;&#x65;&#x73;&#115;&#64;&#101;&#x78;&#x61;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a></p>
+<blockquote>
+<p>在浏览器里面，这段字串会变成一个可以点击的链接。（这种做法虽然可以糊弄不少的机器人，但并不能全部挡下来，不过总比什么都不做好些。不管怎样，公开你的信箱终究会引来广告信件的。）</p>
+</blockquote>
+<p><strong>反斜杠</strong></p>
+<p>Markdown可以利用反斜杠来插入一些在语法中有其他意义的符号，例如：如果你想要用星号*加在文字旁边的方式来做出强调效果（但不用<em>标签），你可以在星号的前面加上反斜杠：</em></p>
+<p>*literal asterisks*</p>
+<p>Markdown支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<p><img src="G:\我的图片\example.png" alt="image" title="I am an image"></p>
+<h3 id="To-do-List"><a href="#To-do-List" class="headerlink" title="To-do List"></a>To-do List</h3><h3 id="待办和清单"><a href="#待办和清单" class="headerlink" title="待办和清单"></a>待办和清单</h3><ul>
+<li style="list-style: none"><input type="checkbox" checked> 已完成项目1<ul>
+<li style="list-style: none"><input type="checkbox" checked> 已完成事项1</li>
+<li style="list-style: none"><input type="checkbox" checked> 已完成事项2</li>
+</ul>
+</li>
+<li style="list-style: none"><input type="checkbox"> 待办事项1</li>
+<li style="list-style: none"><input type="checkbox"> 待办事项2</li>
+</ul>
+<h3 id="流程图"><a href="#流程图" class="headerlink" title="流程图"></a>流程图</h3><h3 id="自上而下的顺序"><a href="#自上而下的顺序" class="headerlink" title="自上而下的顺序"></a>自上而下的顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph TB</span><br><span class="line">A--&gt;B</span><br></pre></td></tr></table></figure>
+<h3 id="自下而上的顺序"><a href="#自下而上的顺序" class="headerlink" title="自下而上的顺序"></a>自下而上的顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph BT</span><br><span class="line">A--&gt;B</span><br></pre></td></tr></table></figure>
+<h3 id="从左到右的顺序"><a href="#从左到右的顺序" class="headerlink" title="从左到右的顺序"></a>从左到右的顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A--&gt;B</span><br></pre></td></tr></table></figure>
+<h3 id="从右到左的顺序"><a href="#从右到左的顺序" class="headerlink" title="从右到左的顺序"></a>从右到左的顺序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">graph RL</span><br><span class="line">A--&gt;B</span><br></pre></td></tr></table></figure>
+<h3 id="流程图-1"><a href="#流程图-1" class="headerlink" title="流程图"></a>流程图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">    A[Chritmas] --&gt;B(Go Shopping)</span><br><span class="line">    B --&gt; C&#123;Let me think&#125;</span><br><span class="line">    C --&gt;|One| D[Laptop]</span><br><span class="line">    C --&gt;|Two| E[iPhone]</span><br><span class="line">    C --&gt;|There| F[Car]</span><br></pre></td></tr></table></figure>
+<h3 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 产品计划表</span><br><span class="line">section 初期阶段</span><br><span class="line">明确需求: 2016-03-01, 10d</span><br><span class="line">section 中期阶段</span><br><span class="line">跟进开发: 2016-03-11, 15d</span><br><span class="line">section 后期阶段</span><br><span class="line">走查测试: 2016-03-20, 9d</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>header 1</th>
+<th>header 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>row 1 col 1</td>
+<td>row 1 col 2</td>
+</tr>
+<tr>
+<td>I</td>
+<td>am</td>
+</tr>
+</tbody>
+</table>
+</div><div class="post-copyright"><blockquote><p>原文作者: zahra</p><p>原文链接: <a href="https://littleheng.gitee.io/2017/07/21/Hello-Hexo/">https://littleheng.gitee.io/2017/07/21/Hello-Hexo/</a></p><p>版权声明: 转载请注明出处(必须保留原文作者署名原文链接)</p></blockquote></div><div class="tags"></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2017/08/02/初识Vue/" class="pre">Vue学习笔记（一）</a></div><div id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8yOTgwNi82Mzcy"></div></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">文章目录</i></div><ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#这是H6"><span class="toc-text">这是H6</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#这是H2"><span class="toc-text">这是H2</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#这是H1"><span class="toc-text">这是H1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#To-do-List"><span class="toc-text">To-do List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#待办和清单"><span class="toc-text">待办和清单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图"><span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自上而下的顺序"><span class="toc-text">自上而下的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自下而上的顺序"><span class="toc-text">自下而上的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从左到右的顺序"><span class="toc-text">从左到右的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从右到左的顺序"><span class="toc-text">从右到左的顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#流程图-1"><span class="toc-text">流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#甘特图"><span class="toc-text">甘特图</span></a></li></ol></li></div><div class="widget"><div class="widget-title"><i class="fa fa-xie"> 最新文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/06/20/CSS随记/">CSS随记</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/19/动效设计/">动效设计</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/04/百度前端学院-2017/">百度前端学院-2017</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/06/01/队列和堆栈/">队列和堆栈</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/02/初识Vue/">Vue学习笔记（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/Hello-Hexo/">hello markdown!</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> 归档</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">六月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li></ul></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zahra.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cee952a70be0da77981a447a3b9bbf1c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script><script>(function(d, s) {
+  var j, e = d.getElementsByTagName('body')[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.appendChild(j);
+})(document, 'script');
+</script></body></html>
