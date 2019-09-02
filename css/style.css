@@ -248,6 +248,7 @@ body {
   padding: 0.6em 0 0;
   color: #fff;
   text-shadow: 1px 2px 3px #113f6e;
+  min-height: 26px;
   white-space: normal;
   word-wrap: break-word;
   line-height: 26px;
@@ -256,7 +257,7 @@ body {
   font: bold 42px/1.2 "宋体";
   white-space: nowrap;
   color: #fff;
-  text-shadow: 1px 3px 6px #113f6e;
+  text-shadow: #113f6e 1px 3px 6px;
 }
 #nav-menu {
   margin: 20px 0;
@@ -479,6 +480,7 @@ body {
   padding: 25px;
   background: #fff;
   border-radius: 4px;
+  border-bottom: 1px solid #d8e2eb;
   -webkit-box-shadow: 1px 2px 3px #adc2d7;
   box-shadow: 1px 2px 3px #adc2d7;
   border: 1px solid #adc2d7;
