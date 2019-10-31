@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta name="generator" content="Hexo 3.8.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="想要干点啥，我们差着境界呢。"><meta name="keywords" content="zahra, littleheng, java, css"><title>毕向东Java基础部分笔记 | zahra</title><link rel="stylesheet" type="text/css" href="//fonts.loli.net/css?family=Source+Code+Pro"><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.3"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.3"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">毕向东Java基础部分笔记</h1><a id="logo" href="/.">zahra</a><p class="description">简单的事情坚持做，重复做。</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">毕向东Java基础部分笔记</h1><div class="post-meta"><a href="/2019/10/31/毕向东Java基础部分笔记/#comments" class="comment-count"></a><p><span class="date">Oct 31, 2019</span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>点击</i></i></span></p></div><div class="post-content"><h4 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h4><p><strong>特点</strong><br>    进制越大，表现形式越短。都是为了更方便的表示数据。</p>
+<p><strong>定义</strong>   </p>
+<pre><code>字节：一个字节由8位二进制数组成，一个字节最大是255。  
+二进制：0-1，满2进1。  
+八进制：0-7，满8进1。用0开头表示，二进制的三位代表一位。  
+十进制：0-9，满10进1。  
+十六进制：0-9、A-F，满16进1。用0x开头表示，二进制的四位代表一位。  
+</code></pre><p><strong>转换</strong></p>
+<pre><code>* 十进制转二进制  
+原理：对十进制数进行除2运算，将每次运算的余数从右往左排列，直至除不尽为止。   
+例子：6 -&gt; 110
+
+* 二进制转十进制  
+原理：二进制乘以2的运算    
+例子：110  
+&gt;   
+    0\*2（0）+ 1\*2(1) + 1\*2(2) = 0 + 2 + 4 = 6  
+
+或
+(1*2+1)*2：从左往右第一个不为零的数是乘以2的因数，第二个是第一次相乘的余数，往后每有一位数就表示前面计算的结果要再乘以2还要加上本身所表示的余数，一直乘到最后一位。
+
+* 十进制转十六进制  
+原理：先将十进制转为二进制，再将每四位二进制位转为一位十六进制位  
+例子：90  
+转为二进制：0101-1010   
+转为十进制：5-10  
+转为十六进制：0x5A
+
+* 十进制转八进制  
+原理：先将十进制转为二进制，再将每三位二进制位转为一位八进制位  
+例子：90  
+转为二进制：001-011-010  
+转为八进制：1-3-2
+</code></pre><p><strong>负数的二进制表现形式</strong></p>
+<pre><code>例子：6  
+转为二进制：110  
+-6：其实就是6的二进制取反+1  
+取反：将二进制的1变成0，0变成1。  
+
+在内存中，一个数占四个字节，一个字节由八位二进制组成，因此6在内存中是这样的：  
+&gt;   
+    0000-0000 0000-0000 0000-0000 0000-0110  
+取反：  
+&gt;   
+    1111-1111 1111-1111 1111-1111 1111-1001  
+再加上1：  
+&gt;   
+    0000-0000 0000-0000 0000-0000 0000-0001  
+二进制加法：高位与高位相加，低位与低位相加，零个1为0，一个1为1， 两个1相加逢二进一。  
+因此结果为：  
+&gt;   
+    1111-1111 1111-1111 1111-1111 1111-1010 = -6  
+
+ps：负数的最高位都是1。
+</code></pre><h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>java语言是强类型语言，对于每一种数据都定义了明确的具体数据类型，在内存中分配了不同大小的内存空间。数据类型分为基本数据类型和引用数据类型</p>
+<ul>
+<li><p>基本数据类型  </p>
+<blockquote>
+<p>  byte(8位)、short(16)、int(32)、long()、float(单精度：32)、double(双精度：64)、char(16：0-6535)、boolean</p>
+</blockquote>
+</li>
+<li><p>引用数据类型</p>
+<blockquote>
+<p>  class(类)、interface(接口)、<a href="数组"></a></p>
+</blockquote>
+</li>
+<li><p>数据类型的自动提升和强制转换</p>
+<blockquote>
+<p>  在不同类型数据进行运算时，数据类型占位数少的数据会自动提升到占位数大的数据类型再参与运算，其结果类型就是占位数大的数据类型。</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>  如果想占位数大的数据和占位数小的数据运算时，其结果类型也为占位数小的数据类型，则可以使用强制类型转换。即在运算结果前使用占位数小的数据类型修饰，这样计算机在运算出最终结果时，则会去掉多余的位，只留下转换类型的位数。如果运算结果超出转换类型的范围，这样做可能会丢失精度。</p>
+</blockquote>
+<ul>
+<li><p>ASCII码表</p>
+<blockquote>
+<p>  每一个字符在ASCII码表中都有对应的代码表示。a是97，A是65，0是48。所有计算机都支持ASCII码。</p>
+</blockquote>
+</li>
+<li><p>取模</p>
+<blockquote>
+<p>  取模即取余数，当左边数大于右边数时，结果是左边；当左边数等于右边数时，结果是0。<br>当负数与正数取模时，数值正常取模，正负取决于左边被取模的数的正负。左边数是正数，其结果也是正数；反之亦然。</p>
+</blockquote>
+</li>
+<li><p>字符串连接符</p>
+<blockquote>
+<p>  字符串数据和任何数据使用+都是相连接，最终都会变成字符串。</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h4><ul>
+<li><p>按位与运算（&amp;）<br>按位与运算是双目运算符，其功能是参与运算的两个数各对应的二进位相与。只有对应的两个二进位均为1时，结果位才为1，否则为0。参与运算的数以补码方式出现。</p>
+</li>
+<li><p>按位或运算（|）<br>按位或运算也是双目运算符，其功能是参与运算的两个数各对应二进位相或。只要对应的两个二进位有一个为1时，结果位就为1。参与运算的两个数均以补码方式出现。</p>
+</li>
+<li><p>按位异或运算（^）<br>按位异或运算符是双目运算符，其功能是参与运算的两个数各对应二进位相异或。只要对应的两个二进位相异时，结果位为1。参与运算的两个数均以补码的方式出现。</p>
+</li>
+<li><p>求反运算（~）<br>求反运算符是单目运算符，具有右结合性。其功能是对参与运算的数的各二进位按位求反。</p>
+</li>
+<li><p>左移运算（&lt;&lt;）<br>左移运算符是双目运算符。其功能是把“&lt;&lt;”左边的运算数的各二进制位全部左移若干位，由“&lt;&lt;”右边的数指定移动的位数，高位丢弃，低位补0。</p>
+</li>
+<li><p>右移运算（&gt;&gt;）<br>右移运算符是双目运算符。其功能是把“&gt;&gt;”左边的运算数的各二进制位全部右移若干位，“&gt;&gt;”右边的    数指定移动的位数。  </p>
+</li>
+</ul>
+<blockquote>
+<p> 注意：对于有符号数，在右移时，符号位将随同移动。当为正数时，最高位补0，而为负数时，符号位为1，最高位是补0或是补1取决于编译系统的规定。Turbo C和很多系统规定为补1。  </p>
+</blockquote>
+<ul>
+<li>无符号右移（&gt;&gt;&gt;）<br>无符号右移是双目运算符。无论最高位是0还是1，左边补齐0。（原码，反码，补码）</li>
+</ul>
+<p><strong>什么场景选择使用if，什么场景选择使用switch？</strong>  </p>
+<p>如果判断的具体数值不多，而是符合byte short int char这四种类型，建议使用switch语句，因为效率稍高。其他情况，涉及对区间判断，以及对结果为boolean类型的判断，建议使用if。因为If的使用范围更广。</p>
+<h4 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h4><p>java程序在运行时，需要在内存中分配空间。为了提高运算效率，有对空间进行了不同区域的划分，因为每一片区域都有特定的处理数据方式和内存管理方式。</p>
+<p><strong>栈内存</strong></p>
+<blockquote>
+<p>用于存储局部变量，当数据使用完，所占空间会自动释放。</p>
+</blockquote>
+<p><strong>堆内存</strong></p>
+<ul>
+<li>数组和对象，通过new建立的实例都存放在堆内存中。</li>
+<li>每一个实体都有内存地址值。</li>
+<li>实体中的变量都有默认初始化值。</li>
+<li>实体不再被使用，会在不确定的时间内被垃圾回收器回收。</li>
+</ul>
+<p><strong>方法区</strong></p>
+<p><strong>本地方法区</strong></p>
+<p><strong>寄存器</strong></p>
+<h4 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h4><blockquote>
+<p>java语言本身是成长于c++，它优化了一些c++的特性而变得更简单、易学、易用。尤其是内存的优化要比c++做的好。</p>
+</blockquote>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p><strong>重载</strong></p>
+<blockquote>
+<p>在同一个类中，允许存在一个以上的同名函数，只要它们的参数个数或者参数类型不同即可。与返回值类型无关，只看参数列表。</p>
+</blockquote>
+<p><strong>什么时候使用重载？</strong></p>
+<blockquote>
+<p>当定义的功能相同，但参与运算的未知内容不同。那么，这时就定义一个函数名称以表示此功能，方便阅读，而通过参数列表的不同来区分多个同名函数。</p>
+</blockquote>
+<h4 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h4><p><strong>进程</strong></p>
+<blockquote>
+<p>进程是一个正在执行中的程序。每一个进程执行都有一个执行顺序。该顺序是一个执行路径，或者叫一个控制单元。</p>
+</blockquote>
+<p><strong>线程</strong></p>
+<blockquote>
+<p>线程就是进程中的一个独立的控制单元，线程控制着进程的执行。一个进程中至少有一个线程。</p>
+</blockquote>
+<blockquote>
+<p>Java VM 启动的时候会有一个进程java.exe，该进程中至少一个线程负责java程序的执行。而且这个线程运行的代码存在于main方法中，该线程称之为主线程。</p>
+</blockquote>
+<p>ps：jvm启动不止一个线程，还有负责垃圾回收机制的线程。</p>
+<p><strong>创建线程</strong></p>
+<ul>
+<li>创建线程的第一种方式：继承Thread类<br>步骤：<ul>
+<li>定义类继承Thread</li>
+<li>复写Thread类中的run方法。<br>  目的：将自定义代码存储在run方法，让线程运行</li>
+<li>调用线程的start方法。<br>  该方法有两个作用：启动线程，调用run方法</li>
+</ul>
+</li>
+</ul>
+<p>ps：运行多线程程序后，发现运行结果每次都不一样。因为多个线程都获取cpu的执行权。cpu执行到谁，谁就运行。有一点是明确的，在某一时刻，只能有一个程序在运行。（多核除外）cpu在坐着快速的切换，以达到看上去是同时运行的效果。我们可以形象的把多线程的运行行为看成是多线程在互相抢夺cpu的执行权。</p>
+<p>这就是多线程的一个特性：随机性。谁抢到谁执行，至于执行多长时间，cpu说了算。</p>
+<p><strong>为什么要覆盖run方法</strong></p>
+<p>Thread类用于描述线程。该类就定义了一个功能，用于存储线程要运行的代码，该存储功能就是run方法。也就是说Thread类中的run方法，用于存储线程要运行的代码。</p>
+<p><strong>start和run的区别</strong></p>
+<p>start是启动线程并执行线程的run方法。虚拟机会调用底层代码开启一个线程。当它执行时，多个线程会交替执行；run方法用于存储线程需要执行的代码。如果不执行start只执行run，相当于对象调用方法，其执行路径是单线程，执行结果是按照代码顺序输出，不会出现交替的结果。</p>
+<p><strong>线程的状态</strong></p>
+<p><img src alt></p>
+<p>ps：线程都有自己默认的名称：Thread-编号。该编号从0开始。此名称可以通过线程的构造函数自定义。</p>
+<p><strong>线程的一些方法</strong></p>
+<pre><code>* static Thread currentThread()：获取当前线程对象
+* getName()：获取线程名称
+* setName()或构造函数：设置线程名称
+</code></pre><ul>
+<li><p>创建线程的第二种方法：声明并实现Runnable接口<br>步骤：</p>
+<ul>
+<li>定义类实现Runnable接口</li>
+<li><p>覆盖Runnable接口中的run方法</p>
+<blockquote>
+<p>将线程要运行的代存放在run方法中    </p>
+</blockquote>
+</li>
+<li><p>通过Thread类建立线程对象</p>
+</li>
+<li><p>将Runnable接口的子类对象作为实际参数传递给Thread类的构造函数    </p>
+<blockquote>
+<p>为什么要将Runnable接口的子类对象传递给Thread类的构造函数？<br>因为自定义的run方法所属的对象是Runnable接口的子类对象。所以要让线程去指定对象的run方法，就必须明确该run方法所属的对象。</p>
+</blockquote>
+</li>
+<li><p>调用Thread类的start方法开启线程并调用Runnable接口子类的run方法</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>实现方式和继承方式有什么区别？</strong></p>
+<p>java只支持单继承。</p>
+<ul>
+<li><p>实现方式<br>避免了单继承的局限性。在定义线程时，建议使用实现方式。</p>
+</li>
+<li><p>继承方式<br>其实也是实现了Runnable接口</p>
+</li>
+<li><p>区别<br>继承Thread：线程代码存放在Thread子类的run方法中<br>实现Runnable：线程代码存放在接口的子类的run方法中</p>
+</li>
+</ul>
+</div><div class="post-copyright"><blockquote><p>原文作者: zahra</p><p>原文链接: <a href="https://littleheng.gitee.io/2019/10/31/毕向东Java基础部分笔记/">https://littleheng.gitee.io/2019/10/31/毕向东Java基础部分笔记/</a></p><p>版权声明: 转载请注明出处(必须保留原文作者署名原文链接)</p></blockquote></div><div class="tags"></div><div class="post-share"><div class="social-share"><span>分享到:</span></div></div><div class="post-nav"><a href="/2019/09/21/vue父子组件数据传递/" class="next">vue父子组件数据传递</a></div><div id="comments"><div id="lv-container" data-id="city" data-uid="MTAyMC8yOTgwNi82Mzcy"></div></div></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><a href="/baidusitemap.xml">网站地图</a> |  <a href="/atom.xml">订阅本站</a> |  <a href="/about/">联系博主</a></p><p>本站总访问量：<i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i>次，本站总访客数:<i id="busuanzi_container_site_uv"><i id="busuanzi_value_site_uv"></i></i>人</p><p><span> Copyright &copy;<a href="/." rel="nofollow">zahra.</a></span><span> Theme by<a rel="nofollow" target="_blank" href="https://github.com/chaooo/hexo-theme-BlueLake"> BlueLake.</a></span><span> Count by<a href="http://busuanzi.ibruce.info/"> busuanzi.</a></span><span> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a></span></p></div></div></div><script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?cee952a70be0da77981a447a3b9bbf1c";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+  })();
+</script><script type="text/javascript" src="/js/search.json.js?v=2.0.3"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.3" async></script><link rel="stylesheet" type="text/css" href="/share/css/share.css"><script type="text/javascript" src="/share/js/social-share.js" charset="utf-8"></script><script type="text/javascript" src="/share/js/qrcode.js" charset="utf-8"></script><script>(function(d, s) {
+  var j, e = d.getElementsByTagName('body')[0];
+  if (typeof LivereTower === 'function') { return; }
+  j = d.createElement(s);
+  j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+  j.async = true;
+  e.appendChild(j);
+})(document, 'script');
+</script></body></html>
